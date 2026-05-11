@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo('charset'); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<?php wp_head(); ?>
+</head>
+<body <?php body_class('lai-homepage'); ?>>
+<?php wp_body_open(); ?>
+
+<!-- ═══ NAVIGATION ═══════════════════════════════════════════ -->
+<nav class="lai-nav" role="navigation" aria-label="Navigation principale">
+  <div class="lai-nav__inner">
+
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="lai-nav__logo" aria-label="<?php bloginfo('name'); ?> — Accueil">
+      <?php
+      $logo_id = get_theme_mod('custom_logo');
+      if ($logo_id) {
+          echo wp_get_attachment_image($logo_id, 'full', false, ['class' => 'lai-nav__logo-img', 'alt' => get_bloginfo('name')]);
+      } else { ?>
+        <div class="lai-nav__logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+            <circle cx="12" cy="12" r="2.5" fill="#F5C400"/>
+            <circle cx="12" cy="12" r="6" stroke="#F5C400" stroke-width="1.5" stroke-opacity=".6" fill="none"/>
+            <circle cx="12" cy="12" r="10" stroke="#F5C400" stroke-width="1" stroke-opacity=".3" fill="none"/>
+          </svg>
+        </div>
+      <?php } ?>
+      <div class="lai-nav__logo-text">
+        <span class="lai-nav__logo-name"><?php bloginfo('name'); ?></span>
+        <span class="lai-nav__logo-tagline">St Jean d'Illac · Gironde</span>
+      </div>
+    </a>
+
+    <div class="lai-nav__menu" id="primary-menu">
+      <?php wp_nav_menu([
+        'theme_location' => 'primary',
+        'container'      => false,
+        'menu_class'     => 'lai-nav__list',
+        'depth'          => 1,
+        'fallback_cb'    => false,
+      ]); ?>
+      <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-nav__cta">
+        Nous rejoindre
+      </a>
+    </div>
+
+    <button class="lai-nav__burger" aria-controls="primary-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</nav>
+
+<!-- ═══ HERO CAROUSEL ════════════════════════════════════════ -->
+<main>
+<section class="lai-hero" aria-label="Présentation du club">
+  <div class="lai-carousel" role="region" aria-roledescription="carousel">
+
+    <!-- Slide 1 -->
+    <div class="lai-slide lai-slide--active" style="background-color:#2A3F55;" role="group" aria-roledescription="slide" aria-label="Slide 1 sur 3">
+      <div class="lai-slide__overlay" aria-hidden="true"></div>
+      <div class="lai-slide__content">
+        <div class="lai-slide__eyebrow" aria-hidden="true">
+          <span class="lai-slide__line"></span>
+          <span>Compagnie de tir à l'arc</span>
+        </div>
+        <h1 class="lai-slide__title">Un club sérieux,<br>une pratique<br><em>ouverte à tous.</em></h1>
+        <p class="lai-slide__text">Débutants, confirmés, jeunes et adultes — bienvenue à St Jean d'Illac.</p>
+        <div class="lai-slide__actions">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-btn lai-btn--primary">Nous rejoindre</a>
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('calendrier'))); ?>" class="lai-btn lai-btn--outline">Voir le calendrier</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="lai-slide" style="background-color:#1E3A4A;" role="group" aria-roledescription="slide" aria-label="Slide 2 sur 3">
+      <div class="lai-slide__overlay" aria-hidden="true"></div>
+      <div class="lai-slide__content">
+        <div class="lai-slide__eyebrow" aria-hidden="true">
+          <span class="lai-slide__line"></span>
+          <span>Événements</span>
+        </div>
+        <h1 class="lai-slide__title">Des événements<br>tout au long<br><em>de la saison.</em></h1>
+        <p class="lai-slide__text">Tir du Roy, TAG Archers, concours régionaux — une saison vivante et rythmée.</p>
+        <div class="lai-slide__actions">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('calendrier'))); ?>" class="lai-btn lai-btn--gold">Voir le calendrier</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="lai-slide" style="background-color:#1A3428;" role="group" aria-roledescription="slide" aria-label="Slide 3 sur 3">
+      <div class="lai-slide__overlay" aria-hidden="true"></div>
+      <div class="lai-slide__content">
+        <div class="lai-slide__eyebrow" aria-hidden="true">
+          <span class="lai-slide__line"></span>
+          <span>Pratique</span>
+        </div>
+        <h1 class="lai-slide__title">En salle,<br>en extérieur —<br><em>toute l'année.</em></h1>
+        <p class="lai-slide__text">Mercredi 18h–20h et samedi. Accessible dès 12 ans, tous niveaux.</p>
+        <div class="lai-slide__actions">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-btn lai-btn--primary">Nous rejoindre</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="lai-carousel__prev" aria-label="Slide précédente">&#8249;</button>
+    <button class="lai-carousel__next" aria-label="Slide suivante">&#8250;</button>
+
+    <div class="lai-carousel__dots" role="tablist" aria-label="Slides">
+      <button class="lai-dot lai-dot--active" role="tab" aria-selected="true"  aria-label="Aller au slide 1" onclick="goToSlide(0)"></button>
+      <button class="lai-dot"                 role="tab" aria-selected="false" aria-label="Aller au slide 2" onclick="goToSlide(1)"></button>
+      <button class="lai-dot"                 role="tab" aria-selected="false" aria-label="Aller au slide 3" onclick="goToSlide(2)"></button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ EVENTS STRIP ═════════════════════════════════════════ -->
+<div class="lai-events-strip" aria-label="Prochains événements">
+  <div class="lai-events-strip__inner">
+    <div class="lai-events-strip__label" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5C400" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      À venir
+    </div>
+    <div class="lai-events-strip__events">
+      <span><em>30 mai</em> Tir du Roy</span>
+      <span><em>19 juil</em> TAG Archers</span>
+      <span><em>4 juil</em> Fin de saison</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FEATURE CARDS ════════════════════════════════════════ -->
+<section class="lai-features" aria-labelledby="features-title">
+  <div class="lai-features__inner">
+    <p class="lai-section-label" id="features-title">Le club en bref</p>
+    <div class="lai-features__grid">
+
+      <article class="lai-card lai-card--blue">
+        <div class="lai-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A5FAB" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h2>Calendrier</h2>
+        <p>Entraînements, concours et événements de la saison — toujours à jour.</p>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('calendrier'))); ?>" class="lai-card__link lai-card__link--blue">Voir les dates →</a>
+      </article>
+
+      <article class="lai-card lai-card--gold">
+        <div class="lai-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B87A00" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+            <line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+        </div>
+        <h2>Je débute</h2>
+        <p>Quel matériel acheter, comment s'inscrire, tarifs et premières séances.</p>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-card__link lai-card__link--gold">Guide débutant →</a>
+      </article>
+
+      <article class="lai-card lai-card--neutral">
+        <div class="lai-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h2>Ressources</h2>
+        <p>Fiches pratiques encadrants, mandats des compétitions, règlement intérieur.</p>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('ressources'))); ?>" class="lai-card__link lai-card__link--neutral">Accéder →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="lai-footer" role="contentinfo">
+  <div class="lai-footer__inner">
+    <div class="lai-footer__left">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      176 impasse du forestier, 33127 St Jean d'Illac
+    </div>
+    <div class="lai-footer__center">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <a href="mailto:lesarchersillacais@gmail.com">lesarchersillacais@gmail.com</a>
+    </div>
+    <div class="lai-footer__right">
+      © <?php echo esc_html(date('Y')); ?> Les Archers Illacais
+    </div>
+  </div>
+</footer>
+
+<?php wp_footer(); ?>
+
+<script>
+(function() {
+  'use strict';
+  let current = 0;
+  const slides = document.querySelectorAll('.lai-slide');
+  const dots   = document.querySelectorAll('.lai-dot');
+  let timer;
+
+  function showSlide(n) {
+    slides[current].classList.remove('lai-slide--active');
+    dots[current].classList.remove('lai-dot--active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = ((n % slides.length) + slides.length) % slides.length;
+    slides[current].classList.add('lai-slide--active');
+    dots[current].classList.add('lai-dot--active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  window.goToSlide = function(n) { clearInterval(timer); showSlide(n); startTimer(); };
+
+  document.querySelector('.lai-carousel__prev').addEventListener('click', function() {
+    clearInterval(timer); showSlide(current - 1); startTimer();
+  });
+  document.querySelector('.lai-carousel__next').addEventListener('click', function() {
+    clearInterval(timer); showSlide(current + 1); startTimer();
+  });
+
+  function startTimer() { timer = setInterval(function() { showSlide(current + 1); }, 5000); }
+  startTimer();
+
+  // Burger menu
+  const burger = document.querySelector('.lai-nav__burger');
+  const menu   = document.querySelector('.lai-nav__menu');
+  burger.addEventListener('click', function() {
+    const open = menu.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open);
+  });
+})();
+</script>
+
+</body>
+</html>
