@@ -26,12 +26,12 @@ add_action('wp_body_open', function() {
     }
 }, 1);
 
-// Ajouter notre footer avant wp_footer
+/* // Ajouter notre footer avant wp_footer
 add_action('wp_footer', function() {
     if (!is_front_page()) {
         get_template_part('template-parts/footer-site');
     }
-}, 1);
+}, 1); */
 
 // Chargement des styles
 function lai_enqueue_styles() {

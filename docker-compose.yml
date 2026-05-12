@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: lai_demo
+      MYSQL_USER: lai_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: lai_demo
+      WORDPRESS_DB_USER: lai_user
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: wp_
+    volumes:
+      - wp_uploads:/var/www/html/wp-content/uploads
+      - ./theme/astra-child-lai:/var/www/html/wp-content/themes/astra-child-lai
+    ports:
+      - "127.0.0.1:8092:80"
+
+volumes:
+  db_data:
+  wp_uploads:
