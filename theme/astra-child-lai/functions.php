@@ -65,3 +65,21 @@ function lai_enqueue_scripts() {
     wp_enqueue_script('lai-nav', get_stylesheet_directory_uri() . '/assets/js/nav.js', [], '1.0.0', true);
 }
 add_action('wp_enqueue_scripts', 'lai_enqueue_scripts');
+
+function lai_matomo() {
+    if (!is_admin()) { ?>
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://5136.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <?php }
+}
+add_action('wp_head', 'lai_matomo');

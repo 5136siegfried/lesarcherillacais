@@ -21,6 +21,6 @@
   <div class="lai-footer__legal">
     <a href="/mentions-legales">Mentions légales</a>
     <span>·</span>
-    <a href="/confidentialite">Confidentialité</a>
+    <a href="/politique-de-confidentialite/">Confidentialité</a>
   </div>
 </footer>
