@@ -26,7 +26,7 @@
         'theme_location' => 'primary',
         'container'      => false,
         'menu_class'     => 'lai-nav__list',
-        'depth'          => 1,
+        'depth'          => 2,
         'fallback_cb'    => false,
       ]); ?>
       <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-nav__cta">

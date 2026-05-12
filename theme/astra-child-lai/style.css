@@ -25,6 +25,26 @@ body { margin: 0; font-family: 'Barlow', system-ui, sans-serif; color: var(--tex
 a { text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
 
+/* Masquer header et footer Astra sur pages intérieures */
+body:not(.home) #masthead     { display: none !important; }
+body:not(.home) .site-footer  { display: none !important; }
+body:not(.home) #colophon     { display: none !important; }
+
+/* Supprimer les marges Astra */
+body:not(.home) #page         { padding-top: 0 !important; margin-top: 0 !important; }
+body:not(.home) .site-content { padding: 0 !important; }
+body:not(.home) .ast-container { max-width: 100% !important; padding: 0 !important; }
+body:not(.home) .entry-content { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+
+/* Compensation barre admin WP */
+.admin-bar .lai-nav { top: 32px; }
+.admin-bar .lai-hero { margin-top: calc(64px + 32px); }
+
+@media (max-width: 782px) {
+  .admin-bar .lai-nav { top: 46px; }
+  .admin-bar .lai-hero { margin-top: calc(64px + 46px); }
+}
+
 /* ─── NAV ────────────────────────────────────────────── */
 .lai-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -60,6 +80,11 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 4px;
   transition: background .2s;
 }
+.lai-nav__list .current-menu-item > a,
+.lai-nav__list .current-menu-ancestor > a {
+  color: var(--blue);
+  font-weight: 600;
+}
 .lai-nav__cta:hover { background: #1450a0; }
 .lai-nav__burger {
   display: none; flex-direction: column; gap: 5px;
@@ -68,6 +93,51 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lai-nav__burger span {
   display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px;
 }
+
+/* ─── DROPDOWN SOUS-MENUS ────────────────────────────── */
+.lai-nav__list .menu-item-has-children {
+  position: relative;
+}
+.lai-nav__list .sub-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 210px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--blue);
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 9999;
+  padding: 6px 0;
+  list-style: none;
+}
+.lai-nav__list .menu-item-has-children:hover > .sub-menu {
+  display: block;
+}
+.lai-nav__list .sub-menu li a {
+  display: block;
+  padding: 9px 16px;
+  font-size: 13px;
+  color: var(--navy);
+  white-space: nowrap;
+  border-bottom: 0.5px solid var(--border);
+}
+.lai-nav__list .sub-menu li:last-child a { border-bottom: none; }
+.lai-nav__list .sub-menu li a:hover {
+  background: var(--light);
+  color: var(--blue);
+}
+.lai-nav__list .menu-item-has-children > a::after {
+  content: ' ▾';
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+/* Éviter le clipping */
+.lai-nav,
+.lai-nav__inner,
+.lai-nav__menu { overflow: visible; }
 
 /* ─── HERO CAROUSEL ──────────────────────────────────── */
 .lai-hero { margin-top: 64px; position: relative; }
@@ -83,10 +153,11 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .lai-slide__overlay {
   position: absolute; inset: 0;
+  pointer-events: none;
   background: linear-gradient(to right, rgba(13,27,42,.85) 40%, rgba(13,27,42,.2));
 }
 .lai-slide__content {
-  position: relative; padding: 0 80px; max-width: 560px;
+  position: relative; z-index: 2; padding: 0 80px; max-width: 560px;
 }
 .lai-slide__eyebrow {
   display: flex; align-items: center; gap: 10px;
@@ -194,6 +265,42 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lai-card__link--gold    { color: var(--gold-dk); }
 .lai-card__link--neutral { color: var(--muted); }
 
+/* ─── PARTENAIRES ────────────────────────────────────── */
+.lai-partners {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+.lai-partners__inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 32px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.lai-partners__label {
+  font-size: 10px; font-weight: 600; color: var(--muted);
+  letter-spacing: 1.5px; text-transform: uppercase; margin: 0;
+}
+.lai-partners__logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.lai-partner {
+  opacity: 0.65; transition: opacity .2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.lai-partner:hover { opacity: 1; }
+.lai-partner img {
+  height: 44px; width: auto;
+  object-fit: contain;
+  filter: grayscale(30%);
+}
+.lai-partner:hover img { filter: grayscale(0%); }
+
+@media (max-width: 768px) {
+  .lai-partners__logos { gap: 28px; }
+  .lai-partner img { height: 36px; }
+}
+
 /* ─── FOOTER ─────────────────────────────────────────── */
 .lai-footer {
   background: var(--navy); padding: 20px 0;
@@ -236,6 +343,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   .lai-carousel { height: 460px; }
   .lai-slide__content { padding: 0 24px; }
   .lai-slide__title { font-size: 32px; }
+  .lai-slide { pointer-events: none; }
+  .lai-slide--active { pointer-events: auto; }
 
   .lai-features__grid { grid-template-columns: 1fr; }
 
@@ -511,6 +620,205 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 @media (max-width: 768px) {
   .lai-contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── ÉVÉNEMENTS PAGE ────────────────────────────────── */
+.lai-events-intro {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px;
+  padding: 24px 28px; background: var(--light);
+  border-radius: var(--radius); border-left: 4px solid var(--blue);
+}
+.lai-events-intro p { margin: 0; font-size: 15px; color: #444; line-height: 1.7; }
+
+.lai-btn-event {
+  display: inline-block; white-space: nowrap;
+  background: var(--blue); color: var(--white);
+  font-size: 13px; font-weight: 600; padding: 10px 20px;
+  border-radius: 4px; transition: background .2s;
+}
+.lai-btn-event:hover { background: #1450a0; }
+.lai-btn-event--white {
+  background: var(--white); color: var(--navy);
+}
+.lai-btn-event--white:hover { background: var(--light); }
+
+.lai-event-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-bottom: 40px;
+}
+.lai-event-card {
+  padding: 24px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--white);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.lai-event-card--cta {
+  background: var(--navy); border-color: var(--navy);
+}
+.lai-event-card--cta h3,
+.lai-event-card--cta p { color: rgba(255,255,255,.85); }
+
+.lai-event-card__icon { font-size: 28px; }
+.lai-event-card h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin: 0; }
+.lai-event-card p { font-size: 13px; color: var(--muted); line-height: 1.65; margin: 0; }
+.lai-event-card ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.lai-event-card ul li {
+  font-size: 12px; color: var(--muted); padding-left: 14px; position: relative;
+  border: none;
+}
+.lai-event-card ul li::before {
+  content: ''; position: absolute; left: 0; top: 7px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+}
+
+.lai-events-infos {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+  padding: 24px; background: var(--light);
+  border-radius: var(--radius); border: 1px solid var(--border);
+}
+.lai-events-info-item {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.lai-events-info-item div { display: flex; flex-direction: column; gap: 4px; }
+.lai-events-info-item strong { font-size: 13px; color: var(--navy); font-weight: 600; }
+.lai-events-info-item span { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .lai-event-cards { grid-template-columns: 1fr; }
+  .lai-events-infos { grid-template-columns: 1fr; }
+  .lai-events-intro { flex-direction: column; align-items: flex-start; }
+}
+
+/* ─── WIKI ARCHERS ───────────────────────────────────── */
+.lai-wiki-nav {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 48px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 64px; background: var(--white);
+  z-index: 10; padding-top: 16px;
+}
+.lai-wiki-nav__item {
+  padding: 7px 16px; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--light);
+  font-size: 13px; color: var(--navy); font-weight: 500;
+  transition: all .2s;
+}
+.lai-wiki-nav__item:hover {
+  border-color: var(--blue); background: #EEF4FF; color: var(--blue);
+}
+
+.lai-wiki-section {
+  margin-bottom: 64px; scroll-margin-top: 120px;
+}
+
+/* Vocabulaire */
+.lai-vocab-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 24px;
+}
+.lai-vocab-group {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+}
+.lai-vocab-group h3 {
+  background: var(--navy); color: var(--white);
+  font-size: 13px; font-weight: 600; margin: 0;
+  padding: 10px 16px; letter-spacing: .3px;
+}
+.lai-vocab-item {
+  display: flex; gap: 12px; padding: 10px 16px;
+  border-bottom: 0.5px solid var(--border);
+  align-items: baseline;
+}
+.lai-vocab-item:last-child { border-bottom: none; }
+.lai-vocab-term {
+  font-size: 13px; font-weight: 600; color: var(--blue);
+  min-width: 110px; flex-shrink: 0;
+}
+.lai-vocab-def { font-size: 13px; color: #555; line-height: 1.5; }
+
+/* Progression */
+.lai-progression { display: flex; flex-direction: column; gap: 0; }
+.lai-prog-step {
+  display: flex; gap: 24px;
+  padding: 24px 0; border-bottom: 1px solid var(--border);
+}
+.lai-prog-step:last-child { border-bottom: none; }
+.lai-prog-step__num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--blue); color: var(--white);
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 4px;
+}
+.lai-prog-step__content h3 {
+  font-size: 17px; font-weight: 600; color: var(--navy); margin: 0 0 8px;
+}
+.lai-prog-step__content h3 span {
+  font-size: 12px; font-weight: 400; color: var(--blue);
+  background: #EEF4FF; padding: 2px 10px; border-radius: 10px; margin-left: 10px;
+}
+.lai-prog-step__content p { font-size: 14px; color: #555; margin: 0 0 10px; line-height: 1.65; }
+.lai-prog-step__content ul { display: flex; flex-direction: column; gap: 4px; }
+.lai-prog-step__content ul li {
+  font-size: 13px; color: var(--muted); padding-left: 14px;
+  position: relative; border: none;
+}
+.lai-prog-step__content ul li::before {
+  content: ''; position: absolute; left: 0; top: 7px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+}
+
+/* Technique */
+.lai-technique-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.lai-technique-card {
+  padding: 22px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--light);
+  position: relative;
+}
+.lai-technique-card__num {
+  font-size: 28px; font-weight: 700; color: var(--border);
+  line-height: 1; margin-bottom: 10px;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+}
+.lai-technique-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 0 0 8px; }
+.lai-technique-card p { font-size: 13px; color: #555; line-height: 1.65; margin: 0; }
+
+/* Matériel */
+.lai-materiel-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.lai-materiel-card {
+  padding: 22px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--white);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.lai-materiel-card--highlight {
+  border-color: var(--gold); background: #FFFBE6;
+}
+.lai-materiel-card--cta {
+  background: var(--navy); border-color: var(--navy);
+}
+.lai-materiel-card--cta h3,
+.lai-materiel-card--cta p { color: rgba(255,255,255,.85); }
+.lai-materiel-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 0; }
+.lai-materiel-card p { font-size: 13px; color: #555; line-height: 1.65; margin: 0; }
+.lai-materiel-card ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.lai-materiel-card ul li {
+  font-size: 12px; color: var(--muted);
+  padding-left: 14px; position: relative; border: none;
+}
+.lai-materiel-card ul li::before {
+  content: ''; position: absolute; left: 0; top: 6px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .lai-vocab-grid,
+  .lai-technique-grid,
+  .lai-materiel-grid { grid-template-columns: 1fr; }
+  .lai-wiki-nav { position: static; }
 }
 
 /* ─── PAGES LÉGALES ──────────────────────────────────── */

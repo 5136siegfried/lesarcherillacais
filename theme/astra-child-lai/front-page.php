@@ -17,14 +17,14 @@
   <div class="lai-carousel" role="region" aria-roledescription="carousel">
 
     <!-- Slide 1 -->
-    <div class="lai-slide lai-slide--active" style="background-color:#2A3F55;" role="group" aria-roledescription="slide" aria-label="Slide 1 sur 3">
+    <div class="lai-slide lai-slide--active" style="background-image: url('<?php echo esc_url(home_url('/wp-content/uploads/2026/05/compagny.jpeg')); ?>');" background-size: cover; background-position: center;" role="group" aria-roledescription="slide" aria-label="Slide 1 sur 3">
       <div class="lai-slide__overlay" aria-hidden="true"></div>
       <div class="lai-slide__content">
         <div class="lai-slide__eyebrow" aria-hidden="true">
           <span class="lai-slide__line"></span>
           <span>Compagnie de tir à l'arc</span>
         </div>
-        <h1 class="lai-slide__title">Un club sérieux,<br>une pratique<br><em>ouverte à tous.</em></h1>
+        <h1 class="lai-slide__title">Un club familliale et compétitif,<br>une pratique<br><em>ouverte à tous.</em></h1>
         <p class="lai-slide__text">Débutants, confirmés, jeunes et adultes — bienvenue à St Jean d'Illac.</p>
         <div class="lai-slide__actions">
           <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-btn lai-btn--primary">Nous rejoindre</a>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Slide 2 -->
-    <div class="lai-slide" style="background-color:#1E3A4A;" role="group" aria-roledescription="slide" aria-label="Slide 2 sur 3">
+    <div class="lai-slide" style="background-image: url('<?php echo esc_url(home_url('wp-content/uploads/2026/05/Tir-du-roy-4.jpeg')); ?>');" background-size: cover; background-position: center;" role="group" aria-roledescription="slide" aria-label="Slide 2 sur 3">
       <div class="lai-slide__overlay" aria-hidden="true"></div>
       <div class="lai-slide__content">
         <div class="lai-slide__eyebrow" aria-hidden="true">
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Slide 3 -->
-    <div class="lai-slide" style="background-color:#1A3428;" role="group" aria-roledescription="slide" aria-label="Slide 3 sur 3">
+    <div class="lai-slide" style="background-image: url('<?php echo esc_url(home_url('/wp-content/uploads/2026/05/terrain.jpeg')); ?>');" background-size: cover; background-position: center;" role="group" aria-roledescription="slide" aria-label="Slide 3 sur 3">
       <div class="lai-slide__overlay" aria-hidden="true"></div>
       <div class="lai-slide__content">
         <div class="lai-slide__eyebrow" aria-hidden="true">
@@ -145,6 +145,34 @@
 </section>
 </main>
 
+<!-- ═══ PARTENAIRES ══════════════════════════════════════════ -->
+<section class="lai-partners" aria-label="Partenaires et soutiens">
+  <div class="lai-partners__inner">
+    <p class="lai-partners__label">Partenaires & soutiens</p>
+    <div class="lai-partners__logos">
+
+      <a href="https://www.saintjeandillac.fr" target="_blank" rel="noopener" class="lai-partner" aria-label="Commune de Saint Jean d'Illac">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logos/logo-stjean.png" alt="Saint Jean d'Illac" height="52">
+      </a>
+
+      <a href="https://www.gironde.fr" target="_blank" rel="noopener" class="lai-partner" aria-label="Département de la Gironde">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logos/logo-gironde.jpg" alt="Gironde" height="52">
+      </a>
+
+      <a href="#" class="lai-partner" aria-label="Label Handisport">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logos/logo-handisport.jpg" alt="Club labellisé Handisport" height="52">
+      </a>
+
+      <a href="https://www.heracles-archerie.fr" target="_blank" rel="noopener" class="lai-partner" aria-label="Héracles Archerie">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/logos/logo-heracles.webp" alt="Héracles Archerie — Sponsor" height="52">
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ footer ══════════════════════════════════════════ -->
+
 <?php get_template_part('template-parts/footer-site'); ?>
 
 <?php wp_footer(); ?>
@@ -176,7 +204,7 @@
     clearInterval(timer); showSlide(current + 1); startTimer();
   });
 
-  function startTimer() { timer = setInterval(function() { showSlide(current + 1); }, 5000); }
+  function startTimer() { timer = setInterval(function() { showSlide(current + 1); }, 7000); }
   startTimer();
 
   // Burger menu
