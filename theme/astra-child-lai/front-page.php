@@ -270,8 +270,8 @@ if ($actus->have_posts()) : ?>
 
   function startTimer() { timer = setInterval(function() { showSlide(current + 1); }, 7000); }
   startTimer();
-
-
+})();
+</script>
 
 </body>
 </html>
