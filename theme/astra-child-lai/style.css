@@ -44,6 +44,11 @@ body:not(.home) .entry-content { max-width: 100% !important; margin: 0 !importan
   .admin-bar .lai-nav { top: 46px; }
   .admin-bar .lai-hero { margin-top: calc(64px + 46px); }
 }
+@media (max-width: 768px) {
+  .lai-nav__list .sub-menu { display: none; position: static; border: none; padding: 0; min-width: 0; }
+  .lai-nav__list .sub-menu.is-open { display: block; }
+  .lai-nav__list .sub-menu li a { padding: 8px 16px 8px 28px; font-size: 13px; }
+}
 
 /* ─── NAV ────────────────────────────────────────────── */
 .lai-nav {

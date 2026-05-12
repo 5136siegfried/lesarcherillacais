@@ -271,15 +271,7 @@ if ($actus->have_posts()) : ?>
   function startTimer() { timer = setInterval(function() { showSlide(current + 1); }, 7000); }
   startTimer();
 
-  // Burger menu
-  const burger = document.querySelector('.lai-nav__burger');
-  const menu   = document.querySelector('.lai-nav__menu');
-  burger.addEventListener('click', function() {
-    const open = menu.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', open);
-  });
-})();
-</script>
+
 
 </body>
 </html>

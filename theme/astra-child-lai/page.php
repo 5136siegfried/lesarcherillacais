@@ -40,7 +40,7 @@
 
 <?php wp_footer(); ?>
 
-<script>
+<!-- <script>
 (function() {
   const burger = document.querySelector('.lai-nav__burger');
   const menu   = document.querySelector('.lai-nav__menu');
@@ -51,7 +51,7 @@
     });
   }
 })();
-</script>
+</script> -->
 
 </body>
 </html>
