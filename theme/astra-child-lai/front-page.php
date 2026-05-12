@@ -145,6 +145,70 @@
 </section>
 </main>
 
+<!-- ═══ DERNIÈRES ACTUALITÉS ══════════════════════════════════ -->
+<?php
+$actus = new WP_Query([
+    'posts_per_page' => 3,
+    'post_status'    => 'publish',
+]);
+if ($actus->have_posts()) : ?>
+
+<section class="lai-home-actus" aria-labelledby="actus-title">
+  <div class="lai-home-actus__inner">
+
+    <div class="lai-home-actus__header">
+      <p class="lai-section-label" id="actus-title">Dernières actualités</p>
+      <a href="<?php echo esc_url(get_permalink(get_page_by_path('actualite'))); ?>" class="lai-home-actus__all">
+        Toutes les actualités →
+      </a>
+    </div>
+
+    <div class="lai-blog__grid">
+      <?php while ($actus->have_posts()) : $actus->the_post(); ?>
+        <article class="lai-blog-card">
+          <?php if (has_post_thumbnail()) : ?>
+            <a href="<?php the_permalink(); ?>" class="lai-blog-card__img-wrap" tabindex="-1" aria-hidden="true">
+              <?php the_post_thumbnail('medium_large', ['class' => 'lai-blog-card__img', 'alt' => '']); ?>
+            </a>
+          <?php else : ?>
+            <div class="lai-blog-card__img-placeholder" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A5FAB" stroke-width="1.5">
+                <circle cx="12" cy="12" r="2.5" fill="#1A5FAB"/>
+                <circle cx="12" cy="12" r="6" stroke="#1A5FAB" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+          <?php endif; ?>
+          <div class="lai-blog-card__body">
+            <div class="lai-blog-card__meta">
+              <?php $cats = get_the_category();
+              if ($cats) :
+                $colors = ['Podiums'=>'gold','Vie du club'=>'blue','Fédération'=>'navy','Événements'=>'green'];
+                $color = $colors[$cats[0]->name] ?? 'blue'; ?>
+                <span class="lai-blog-card__cat lai-blog-card__cat--<?php echo esc_attr($color); ?>">
+                  <?php echo esc_html($cats[0]->name); ?>
+                </span>
+              <?php endif; ?>
+              <time datetime="<?php echo get_the_date('c'); ?>" class="lai-blog-card__date">
+                <?php echo get_the_date('j F Y'); ?>
+              </time>
+            </div>
+            <h3 class="lai-blog-card__title">
+              <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            </h3>
+            <p class="lai-blog-card__excerpt">
+              <?php echo wp_trim_words(get_the_excerpt(), 18, '…'); ?>
+            </p>
+            <a href="<?php the_permalink(); ?>" class="lai-blog-card__link">Lire la suite →</a>
+          </div>
+        </article>
+      <?php endwhile; wp_reset_postdata(); ?>
+    </div>
+
+  </div>
+</section>
+
+<?php endif; ?>
+
 <!-- ═══ PARTENAIRES ══════════════════════════════════════════ -->
 <section class="lai-partners" aria-label="Partenaires et soutiens">
   <div class="lai-partners__inner">

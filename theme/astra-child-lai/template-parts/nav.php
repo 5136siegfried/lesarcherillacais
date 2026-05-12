@@ -29,7 +29,7 @@
         'depth'          => 2,
         'fallback_cb'    => false,
       ]); ?>
-      <a href="<?php echo esc_url(get_permalink(get_page_by_path('je-debute'))); ?>" class="lai-nav__cta">
+      <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>" class="lai-nav__cta">
         Nous rejoindre
       </a>
     </div>
